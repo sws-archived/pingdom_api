@@ -75,4 +75,5 @@ function pingdom_api_config_form_submit($form, &$form_state) {
   variable_set('pingdom_api_username', $form_state['values']['user_name']);
   variable_set('pingdom_api_pass', $form_state['values']['password']);
   variable_set('pingdom_api_appkey', $form_state['values']['appkey']);
+  drupal_set_message(t('Your credentials have been saved.'));
 }
