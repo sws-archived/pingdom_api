@@ -1,0 +1,125 @@
+<?php
+/**
+ * @file
+ * Code for the Pingdom API module.
+ */
+
+/**
+ * Implements hook_wsclient_service_load.
+ */
+function pingdom_api_wsclient_service_load($services) {
+  $pingdom_credentials = variable_get('pingdom_api_username') . ':' . variable_get('pingdom_api_pass');
+  $services['pingdom']->settings['curl options'][CURLOPT_USERPWD] = $pingdom_credentials;
+  $pingdom_appkey = variable_get('pingdom_api_appkey');
+  $services['pingdom']->settings['curl options'][CURLOPT_HTTPHEADER] = array("App-Key: " . $pingdom_appkey);
+}
+
+function pingdom_api_wsclient_get_check_list() {
+  $service = wsclient_service_load('pingdom');
+  $result = $service->get_check_list();
+//  dpm($result);
+}
+
+/**
+ * Implements hook_menu().
+ */
+function pingdom_api_menu() {
+  $items['admin/config/services/pingdomapi'] = array(
+    'title' => 'Pingdom API',
+    'type' => MENU_NORMAL_ITEM,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('pingdom_api_config_form'),
+    'access arguments' =>  array('administer site configuration'),
+  );
+  return $items;
+}
+
+/**
+ * Configuration form.
+ */
+function pingdom_api_config_form($form, &$form_state) {
+  $form['authentication'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Pingdom API Authentication'),
+    '#description' => t('Enter your Pingdom API credentials below. See the <a href="@pingdomapidocs">Pingdom API Documentation</a> for more information.', array('@pingdomapidocs' => 'https://www.pingdom.com/features/api/documentation/')),
+  );
+  $form['authentication']['user_name'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Pingdom User Name'),
+    '#default_value' => variable_get('pingdom_api_username'),
+  );
+  $form['authentication']['password'] = array(
+    '#type' => 'password',
+    '#title' => t('Password'),
+    '#default_value' => variable_get('pingdom_api_pass'),
+  );
+  $form['authentication']['appkey'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Application Key'),
+    '#default_value' => variable_get('pingdom_api_appkey'),
+  );
+  $form['authentication']['submit'] = array(
+    '#type' => 'submit',
+    '#value' => t('Save'),
+  );
+  return $form;
+}
+
+/**
+ * Submit function for configuration form.
+ */
+function pingdom_api_config_form_submit($form, &$form_state) {
+  variable_set('pingdom_api_username', $form_state['values']['user_name']);
+  variable_set('pingdom_api_pass', $form_state['values']['password']);
+  variable_set('pingdom_api_appkey', $form_state['values']['appkey']);
+}
+
+/**
+ * Implements hook_default_wsclient_service().
+ */
+function pingdom_api_default_wsclient_service() {
+  $items = array();
+  $items['pingdom'] = entity_import('wsclient_service', '{
+    "settings" : {
+      "send_formatter" : {
+        "class" : "WsclientRestFormFormatter",
+        "settings" : { "default_root" : "result", "adaptive_root" : 0 }
+      },
+      "receive_formatter" : {
+        "class" : "WsclientRestJSONFormatter",
+        "settings" : { "default_root" : "result", "adaptive_root" : 0 }
+      },
+    "operations" : { "get_check_list" : {
+        "url" : "api\\/2.0\\/checks",
+        "label" : "Get Check List",
+        "parameter" : {
+          "limit" : {
+            "type" : "integer",
+            "default value" : "25000",
+            "optional" : true,
+            "allow null" : 0
+          },
+          "offset" : {
+            "type" : "integer",
+            "default value" : "0",
+            "optional" : true,
+            "allow null" : 0
+          },
+          "tags" : { "type" : "text", "optional" : true, "allow null" : 0 }
+        },
+        "name" : "get_check_list",
+        "result" : { "type" : "list\\u003Ccheck\\u003E", "label" : "Check List" },
+        "type" : "GET"
+      }
+    },
+    "datatypes" : [],
+    "global_parameters" : [],
+    "name" : "pingdom",
+    "label" : "Pingdom",
+    "url" : "https:\\/\\/api.pingdom.com\\/",
+    "type" : "rest",
+    "authentication" : null,
+    "rdf_mapping" : []
+  }');
+  return $items;
+}
