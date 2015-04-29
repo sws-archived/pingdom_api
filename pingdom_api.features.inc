@@ -19,10 +19,6 @@ function pingdom_api_default_wsclient_service() {
         "class" : "WsclientRestJSONFormatter",
         "settings" : { "default_root" : "result", "adaptive_root" : 0 }
       },
-      "options" : {
-        "login" : "sws-developers@lists.stanford.edu",
-        "password" : "JNiYZ8w2sRGm"
-      },
     },
     "operations" : { "get_check_list" : {
         "url" : "api\\/2.0\\/checks",
