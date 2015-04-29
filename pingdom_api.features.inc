@@ -21,8 +21,20 @@ function pingdom_api_default_wsclient_service() {
       },
       "curl options" : {"10005" : ":", "10023" : [ "App-Key: " ] }
     },
-    "operations" : { "get_check_list" : {
-        "url" : "api\\/2.0\\/checks",
+    "operations" : {
+      "modify_multiple_checks" : {
+        "type" : "PUT",
+        "url" : "api\/2.0\/checks",
+        "label" : "Modify Multiple Checks",
+        "parameter" : {
+          "paused" : { "type" : "boolean", "optional" : true, "allow null" : 0 },
+          "resolution" : { "type" : "integer", "optional" : true, "allow null" : 0 },
+          "checkids" : { "type" : "list\u003Ctext\u003E", "allow null" : 0 }
+        },
+        "result" : { "type" : "text", "label" : "Response" }
+      },
+      "get_check_list" : {
+        "url" : "api\/2.0\/checks",
         "label" : "Get Check List",
         "parameter" : {
           "limit" : {
@@ -36,11 +48,10 @@ function pingdom_api_default_wsclient_service() {
             "default value" : "0",
             "optional" : true,
             "allow null" : 0
-          },
-          "tags" : { "type" : "text", "optional" : true, "allow null" : 0 }
+          }
         },
         "name" : "get_check_list",
-        "result" : { "type" : "list\\u003Ccheck\\u003E", "label" : "Check List" },
+        "result" : { "type" : "text", "label" : "Check List" },
         "type" : "GET"
       }
     },
