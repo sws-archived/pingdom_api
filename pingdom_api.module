@@ -87,3 +87,17 @@ function pingdom_api_config_form_submit($form, &$form_state) {
   variable_set('pingdom_api_appkey', $form_state['values']['appkey']);
   drupal_set_message(t('Your credentials have been saved.'));
 }
+
+/**
+ * Implements hook_permission().
+ */
+function pingdom_api_permission() {
+  return array(
+    'get pingdom check list' => array(
+      'title' => t('Get Check List from Pingdom'),
+    ),
+    'pause pingdom checks' => array(
+      'title' => t('Pause Pingdom Checks'),
+    ),
+  );
+}
