@@ -23,10 +23,6 @@ function pingdom_api_default_wsclient_service() {
         "login" : "sws-developers@lists.stanford.edu",
         "password" : "JNiYZ8w2sRGm"
       },
-      "curl options" : {
-        "10023" : [ "App-Key: pr3rwcmr0vrknfw1z1injgc39bcobv9x" ],
-        "10005" : "sws-developers@lists.stanford.edu:JNiYZ8w2sRGm"
-      }
     },
     "operations" : { "get_check_list" : {
         "url" : "api\\/2.0\\/checks",
