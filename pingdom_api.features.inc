@@ -18,7 +18,8 @@ function pingdom_api_default_wsclient_service() {
       "receive_formatter" : {
         "class" : "WsclientRestJSONFormatter",
         "settings" : { "default_root" : "result", "adaptive_root" : 0 }
-      }
+      },
+      "curl options" : {"10005" : ":", "10023" : [ "App-Key: " ] }
     },
     "operations" : { "get_check_list" : {
         "url" : "api\\/2.0\\/checks",
