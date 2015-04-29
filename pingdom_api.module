@@ -50,7 +50,6 @@ function pingdom_api_wsclient_get_check_list($limit = 25000, $offset = 0) {
 function pingdom_api_wsclient_modify_multiple_checks($paused, $resolution, $checkids) {
   $service = wsclient_service_load('pingdom');
   $result = $service->modify_multiple_checks($paused, $resolution, $checkids);
-  dpm($result);
   return $result;
 }
 
