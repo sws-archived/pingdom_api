@@ -19,8 +19,11 @@ function pingdom_api_wsclient_service_load($services) {
 /**
  * Get a list of Pingdom checks.
  *
+ * This function takes 1.5 - 2.5 seconds to get the full check list from the
+ *   Pingdom API (on an account with ~120 checks).
+ *
  * @param int $limit
- *   Limits the number of returned probes to the specified quantity. 
+ *   Limits the number of returned probes to the specified quantity.
  *   (Max value is 25000).
  * @param int $offset
  *   Offset for listing. (Requires limit).
@@ -32,8 +35,6 @@ function pingdom_api_wsclient_service_load($services) {
  *
  *   'count' includes metadata about the number of checks.
  *
- * This function takes 1.5 - 2.5 seconds to get the full check list from the
- *   Pingdom API (on an account with ~120 checks).
  */
 function pingdom_api_wsclient_get_check_list($limit = 25000, $offset = 0) {
   $service = wsclient_service_load('pingdom');
