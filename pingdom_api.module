@@ -34,7 +34,6 @@ function pingdom_api_wsclient_service_load($services) {
  *   'checks' includes the metadata about ... the checks.
  *
  *   'count' includes metadata about the number of checks.
- *
  */
 function pingdom_api_wsclient_get_check_list($limit = 25000, $offset = 0) {
   $service = wsclient_service_load('pingdom');
