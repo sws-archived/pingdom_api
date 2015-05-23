@@ -43,6 +43,8 @@ function pingdom_api_wsclient_get_check_list($limit = 25000, $offset = 0) {
 }
 
 /**
+ * Modify multiple checks.
+ *
  * @param bool $paused
  *   Pause the check.
  * @param int $resolution
