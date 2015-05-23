@@ -7,7 +7,7 @@
 include_once 'pingdom_api.features.inc';
 
 /**
- * Implements hook_wsclient_service_load.
+ * Implements hook_wsclient_service_load().
  */
 function pingdom_api_wsclient_service_load($services) {
   $pingdom_credentials = variable_get('pingdom_api_username') . ':' . variable_get('pingdom_api_pass');
@@ -17,10 +17,12 @@ function pingdom_api_wsclient_service_load($services) {
 }
 
 /**
- * @param integer $limit
+ * Get a list of Pingdom checks.
+ *
+ * @param int $limit
  *   Limits the number of returned probes to the specified quantity. (Max value is 25000).
- * @param integer $offset
- *   Offset for listing. (Requires limit.)
+ * @param int $offset
+ *   Offset for listing. (Requires limit).
  * @return array
  *   An array with the following keys: 'checks' and 'counts'.
  *
@@ -39,13 +41,12 @@ function pingdom_api_wsclient_get_check_list($limit = 25000, $offset = 0) {
 }
 
 /**
- * @param boolean $paused
+ * @param bool $paused
  *   Pause the check.
- * @param integer $resolution
+ * @param int $resolution
  *   Check resolution (in minutes). Acceptable values: 1, 5, 15, 30, 60.
  * @param string $checkids
  *   Comma-separated list of check IDs.
- * @return mixed
  */
 function pingdom_api_wsclient_modify_multiple_checks($paused, $resolution, $checkids) {
   $service = wsclient_service_load('pingdom');
@@ -62,7 +63,7 @@ function pingdom_api_menu() {
     'type' => MENU_NORMAL_ITEM,
     'page callback' => 'drupal_get_form',
     'page arguments' => array('pingdom_api_config_form'),
-    'access arguments' =>  array('administer site configuration'),
+    'access arguments' => array('administer site configuration'),
   );
   return $items;
 }

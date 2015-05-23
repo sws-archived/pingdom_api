@@ -1,3 +1,2 @@
 Pingdom API x.x-x.x, xxxx-xx-xx
 -------------------------------
-
