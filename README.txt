@@ -1,6 +1,7 @@
 Pingdom API provides a set of functions to interact with the Pingdom API.
 
-Dependencies: The wsclient module (including wsclient_rest), entity, and features.
+Dependencies: The wsclient module (including wsclient_rest), entity,
+  and features.
 
 This is a developer module; it provides little end-user-facing functionality
  out of the box.
