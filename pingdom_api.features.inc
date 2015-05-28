@@ -53,6 +53,31 @@ function pingdom_api_default_wsclient_service() {
         "name" : "get_check_list",
         "result" : { "type" : "text", "label" : "Check List" },
         "type" : "GET"
+      },
+      "rest_request_get" : {
+        "type" : "GET",
+        "url" : "",
+        "label" : "GET Request",
+        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } },
+        "name" : "rest_request_get"
+      },
+      "rest_request_post" : {
+        "type" : "POST",
+        "url" : "",
+        "label" : "POST Request",
+        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } }
+      },
+      "rest_request_put" : {
+        "type" : "PUT",
+        "url" : "",
+        "label" : "PUT Request",
+        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } }
+      },
+      "rest_request_delete" : {
+        "type" : "DELETE",
+        "url" : "",
+        "label" : "DELETE Request",
+        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } }
       }
     },
     "datatypes" : [],

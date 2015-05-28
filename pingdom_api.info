@@ -2,6 +2,7 @@ name = Pingdom API
 description = Helper module to integrate with the Pingdom API
 core = 7.x
 project status url = https://github.com/SU-SWS/pingdom_api
+package = Services
 dependencies[] = entity
 dependencies[] = features
 dependencies[] = wsclient

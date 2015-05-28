@@ -17,6 +17,52 @@ function pingdom_api_wsclient_service_load($services) {
 }
 
 /**
+ * Generic function to access any resource from the Pingdom API.
+ *
+ * @param string $method
+ *   The method being called on the resource.
+ * @param string $httpmethod
+ *   GET, POST, PUT, or DELETE.
+ * @param array $params
+ *   Parameters to send as part of the request.
+ * @param string $url_args
+ *   Additional URL arguments for some methods.
+ */
+function pingdom_api_rest_request($httpmethod, $method, $params = array(), $url_args = array()) {
+  $service = wsclient_service_load('pingdom');
+  $method = check_plain($method);
+  $query = '';
+  if (!empty($url_args)) {
+    $query .= '/' . implode('/', $url_args);
+  }
+  if (!empty($params)) {
+    $query .= "?";
+    $query .= http_build_query($params);
+  }
+  switch($httpmethod) {
+    case 'GET':
+      $result = $service->rest_request_get($method . $query);
+      return $result;
+      break;
+    case 'POST':
+      $result = $service->rest_request_post($method . $query);
+      return $result;
+      break;
+    case 'PUT':
+      $result = $service->rest_request_put($method . $query);
+      return $result;
+      break;
+    case 'DELETE':
+      $result = $service->rest_request_delete($method . $query);
+      return $result;
+      break;
+    default:
+      drupal_set_message(t('Pingdom API: The specified HTTP method, "!httpmethod", is not supported', array('!httpmethod' => $httpmethod)), 'warning');
+  }
+
+}
+
+/**
  * Get a list of Pingdom checks.
  *
  * This function takes 1.5 - 2.5 seconds to get the full check list from the
