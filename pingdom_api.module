@@ -77,11 +77,12 @@ function pingdom_api_rest_request($httpmethod, $method, $params = array(), $url_
  *   Offset for listing. (Requires limit).
  *
  * @return array
- *   An array with the following keys: 'checks' and 'counts'.
+ *   A multidimensional array with the following sub-arrays:
+ *   'checks' and 'counts'.
  *
  *   'checks' includes the metadata about ... the checks.
  *
- *   'count' includes metadata about the number of checks.
+ *   'counts' includes metadata about the number of checks.
  */
 function pingdom_api_wsclient_get_check_list($limit = 25000, $offset = 0) {
   $service = wsclient_service_load('pingdom');
