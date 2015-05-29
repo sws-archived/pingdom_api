@@ -56,28 +56,31 @@ function pingdom_api_default_wsclient_service() {
       },
       "rest_request_get" : {
         "type" : "GET",
-        "url" : "",
+        "url" : "api\/2.0\/@method",
         "label" : "GET Request",
         "parameter" : { "method" : { "type" : "text", "allow null" : 0 } },
         "name" : "rest_request_get"
       },
       "rest_request_post" : {
         "type" : "POST",
-        "url" : "",
+        "url" : "api\/2.0\/@method",
         "label" : "POST Request",
-        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } }
+        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } },
+        "name" : "rest_request_post"
       },
       "rest_request_put" : {
         "type" : "PUT",
-        "url" : "",
+        "url" : "api\/2.0\/@method",
         "label" : "PUT Request",
-        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } }
+        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } },
+        "name" : "rest_request_put"
       },
       "rest_request_delete" : {
         "type" : "DELETE",
-        "url" : "",
+        "url" : "api\/2.0\/@method",
         "label" : "DELETE Request",
-        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } }
+        "parameter" : { "method" : { "type" : "text", "allow null" : 0 } },
+        "name" : "rest_request_delete"
       }
     },
     "datatypes" : [],
