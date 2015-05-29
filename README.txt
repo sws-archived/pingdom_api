@@ -27,14 +27,17 @@ Returns an array with the following keys: 'checks' and 'counts'.
 
 pingdom_api_wsclient_modify_multiple_checks('true', '15', '1613855');
 
-Pause the check with ID=1613855, and set its check resolution to every 15 minutes.
+Pause the check with ID=1613855, and set its check resolution to
+  every 15 minutes.
 
-Returns an array with the key 'message' => 'Modification of <n> checks was successful!'
+Returns an array with the key:
+  'message' => 'Modification of <n> checks was successful!'
 
 
 pingdom_api_rest_request('POST', 'checks', array('name' => 'Beluga Cam', 'type' => 'http', 'host' => 'www.vanaqua.org', 'url' => '/learn/see-and-learn/live-cams/beluga-cam'));
 
-Creates an HTTP check named "Beluga Cam" checking the URL http://www.vanaqua.org/learn/see-and-learn/live-cams/beluga-cam
+Creates an HTTP check named "Beluga Cam" checking
+  the URL http://www.vanaqua.org/learn/see-and-learn/live-cams/beluga-cam
 
 
 pingdom_api_rest_request('PUT', 'checks', array('name' => 'Beluga Cam New Name'), array('1613855'));
