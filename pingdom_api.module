@@ -161,3 +161,15 @@ function pingdom_api_permission() {
     ),
   );
 }
+
+/**
+ * Implements hook_help().
+ */
+function pingdom_api_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#pingdom_api':
+      $output = "<h3>" . t("How to Use the Pingdom API Module") . "</h3>";
+      $output .= l(t("See README.txt"), drupal_get_path('module', 'pingdom_api') . '/README.txt');
+      return $output;
+  }
+}
